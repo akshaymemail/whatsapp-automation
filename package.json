@@ -1,0 +1,32 @@
+{
+  "name": "whatsapp",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "whatapp automation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshaymemail/whatsapp-automation.git"
+  },
+  "keywords": [
+    "whatapp",
+    "api",
+    "whatapp",
+    "whatsapp",
+    "automation"
+  ],
+  "author": "AKSHAY KUMAR SINGH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshaymemail/whatsapp-automation/issues"
+  },
+  "homepage": "https://github.com/akshaymemail/whatsapp-automation#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
