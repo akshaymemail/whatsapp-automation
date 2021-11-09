@@ -1,1 +1,10 @@
-GET http://localhost:5000
+POST http://localhost:5000/api/user/signup
+Content-Type: application/json
+
+{ 
+    "firstName" : "AKSHAY",
+    "lastName" : "SINGH",
+    "email" : "akshaymework@gmail.com",
+    "username" : "akshaymemail",
+    "password" : "123456"
+}

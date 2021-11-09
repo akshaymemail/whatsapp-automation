@@ -1,32 +1,42 @@
 {
-  "name": "whatsapp",
+  "name": "flipkart-clone",
   "type": "module",
   "version": "1.0.0",
-  "description": "whatapp automation",
+  "description": "a flipkart website clone",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akshaymemail/whatsapp-automation.git"
+    "url": "git+https://github.com/akshaymemail/flipkart-clone.git"
   },
   "keywords": [
-    "whatapp",
-    "api",
-    "whatapp",
-    "whatsapp",
-    "automation"
+    "flipkart",
+    "ecommerce",
+    "react",
+    "redux",
+    "node.js",
+    "mongodb",
+    "mern"
   ],
   "author": "AKSHAY KUMAR SINGH",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akshaymemail/whatsapp-automation/issues"
+    "url": "https://github.com/akshaymemail/flipkart-clone/issues"
   },
-  "homepage": "https://github.com/akshaymemail/whatsapp-automation#readme",
+  "homepage": "https://github.com/akshaymemail/flipkart-clone#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.4",
+    "multer": "^1.4.2",
+    "mysql2": "^2.3.3-rc.0",
+    "nanoid": "^3.1.22",
+    "slugify": "^1.5.0"
   }
 }
