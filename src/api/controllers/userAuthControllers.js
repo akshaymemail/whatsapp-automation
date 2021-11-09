@@ -26,7 +26,7 @@ export const signup = (req, res) => {
 
       db.execute(
         `INSERT INTO users (email, firstname, lastname, username, password) VALUES (?,?,?,?,?)`,
-        [email, firstName, lastName, username, password],
+        [email, firstName, lastName, username, bcrypt.hashSync(password, 10)],
         (err, result) => {
           if (err) {
             return res.status(500).json({
@@ -46,37 +46,69 @@ export const signup = (req, res) => {
 
 // SIGNIN CONTROLLER
 export const signin = (req, res) => {
-  User.findOne({ email: req.body.email }, (err, foundUser) => {
-    if (!err) {
-      // there is no error check if user found or not
-      if (foundUser) {
-        // user exist so now check for password
-        if (bcrypt.compareSync(req.body.password, foundUser.hashPassword)) {
-          // username and passowrd is correct
-          const { _id, firstName, lastName, email, role } = foundUser;
-          res.status(200).json({
-            token: generateToken(foundUser),
-            user: {
-              _id,
-              firstName,
-              lastName,
-              email,
-              role,
-              fullName: `${firstName}` + ` ` + `${lastName}`
-            }
-          });
-        } else {
-          res
-            .status(400)
-            .json({ message: "Enter username or password is incorrect!" });
-        }
-      } else {
-        // user not found
-        res.status(404).json({ message: "User not found!" });
-      }
+  // 1. destructure body data to login
+  // 2. login him / her
+  const { email, password } = req.body;
+  db.query(`SELECT * FROM users WHERE email = ?`, [email], (err, result) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: err
+      });
+    }
+    if (result.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "User does not exist"
+      });
+    }
+    const user = result[0];
+
+    if (bcrypt.compareSync(password, user.password)) {
+      return res.status(200).json({
+        success: true,
+        message: "User successfully logged in",
+        token: generateToken(user)
+      });
     } else {
-      // there is something error
-      res.status(400).json({ message: err });
+      return res.status(400).json({
+        success: false,
+        message: "wrong password"
+      });
     }
   });
+
+  // User.findOne({ email: req.body.email }, (err, foundUser) => {
+  //   if (!err) {
+  //     // there is no error check if user found or not
+  //     if (foundUser) {
+  //       // user exist so now check for password
+  //       if (bcrypt.compareSync(req.body.password, foundUser.hashPassword)) {
+  //         // username and passowrd is correct
+  //         const { _id, firstName, lastName, email, role } = foundUser;
+  //         res.status(200).json({
+  //           token: generateToken(foundUser),
+  //           user: {
+  //             _id,
+  //             firstName,
+  //             lastName,
+  //             email,
+  //             role,
+  //             fullName: `${firstName}` + ` ` + `${lastName}`
+  //           }
+  //         });
+  //       } else {
+  //         res
+  //           .status(400)
+  //           .json({ message: "Enter username or password is incorrect!" });
+  //       }
+  //     } else {
+  //       // user not found
+  //       res.status(404).json({ message: "User not found!" });
+  //     }
+  //   } else {
+  //     // there is something error
+  //     res.status(400).json({ message: err });
+  //   }
+  // });
 };
