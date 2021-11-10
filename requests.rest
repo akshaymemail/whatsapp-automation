@@ -9,10 +9,12 @@
 #     "password" : "123456"
 # }
 
-POST http://localhost:5000/api/user/signin
-Content-Type: application/json
+# POST http://localhost:5000/api/user/signin
+# Content-Type: application/json
 
-{ 
-    "email" : "akshayme@gmail.com",
-    "password" : "123456"
-}
+# { 
+#     "email" : "akshayme@gmail.com",
+#     "password" : "123456"
+# }
+
+GET http://localhost:5000/apiv1/client/generate_qr
