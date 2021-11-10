@@ -17,4 +17,13 @@
 #     "password" : "123456"
 # }
 
-GET http://localhost:5000/apiv1/client/generate_qr
+#  GET http://localhost:5000/apiv1/client/generate_qr
+
+
+POST http://localhost:5000/apiv1/client/send_message
+Content-Type: application/json
+
+{ 
+    "number" : "8271097843",
+    "message" : "hello"
+}

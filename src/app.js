@@ -8,9 +8,6 @@ import { Client } from "whatsapp-web.js";
 
 // EXPRESS APP
 const app = express();
-const client = new Client();
-// whatsapp initializer
-client.initialize();
 
 // MIDDLEWARES
 app.use(express.json());
