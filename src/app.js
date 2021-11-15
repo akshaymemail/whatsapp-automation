@@ -4,16 +4,17 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./api/routes/userAuthRoutes.js";
 import whatsAppRouter from "./api/routes/whatsappRutes.js";
-import { Client } from "whatsapp-web.js";
+import cors from "cors";
 
 // EXPRESS APP
 const app = express();
 
 // MIDDLEWARES
 app.use(express.json());
+app.use(cors());
 
 // CONSTANTS
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 
 // ROUTES
 app.use("/apiv1/user", userRouter);
