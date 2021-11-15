@@ -4,7 +4,6 @@ import express from "express";
 import userRouter from "./api/routes/userAuthRoutes.js";
 import whatsAppRouter from "./api/routes/whatsappRutes.js";
 import cors from "cors";
-import puppeteer from "puppeteer";
 
 // EXPRESS APP
 const app = express();
@@ -15,9 +14,6 @@ app.use(cors());
 
 // CONSTANTS
 const PORT = process.env.PORT || 4000;
-const browser = await puppeteer.launch({
-  executablePath: "/usr/bin/chromium-browser"
-});
 
 // ROUTES
 app.use("/apiv1/user", userRouter);
