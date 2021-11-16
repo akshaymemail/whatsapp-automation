@@ -2,9 +2,9 @@ import { nanoid } from "nanoid";
 import db from "../../database/db.js";
 import { Client } from "whatsapp-web.js";
 
+const client = new Client();
+client.initialize();
 export const generateQr = (req, res) => {
-  const client = new Client();
-  client.initialize();
   let isSent = true;
   client.on("qr", (qr) => {
     if (isSent) {
@@ -16,7 +16,7 @@ export const generateQr = (req, res) => {
 };
 
 export const isAuthenticated = (req, res) => {
-  req.client.on("authenticated", (session) => {
+  client.on("authenticated", (session) => {
     let isDone = true;
     if (isDone) {
       db.execute(
@@ -49,7 +49,7 @@ export const sendMessage = async (req, res) => {
     sanitized_number.length - 10
   )}`; // add 91 before the number here 91 is country code of India
 
-  const number_details = await req.client.getNumberId(final_number); // get mobile number details
+  const number_details = await client.getNumberId(final_number); // get mobile number details
 
   if (number_details) {
     const sendMessageData = await client.sendMessage(
