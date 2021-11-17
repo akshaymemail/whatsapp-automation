@@ -9,7 +9,6 @@ const client = new Client({
 });
 export const generateQr = (req, res) => {
   client.initialize();
-  client = client;
   let isSent = true;
   client.on("qr", (qr) => {
     if (isSent) {
@@ -23,7 +22,7 @@ export const generateQr = (req, res) => {
 };
 
 export const isAuthenticated = (req, res) => {
-  req.client.on("authenticated", (session) => {
+  client.on("authenticated", (session) => {
     let isDone = true;
     if (isDone) {
       db.execute(
