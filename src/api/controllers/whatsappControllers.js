@@ -7,7 +7,7 @@ const client = new Client({
     args: ["--no-sandbox"]
   }
 });
-client.client.initialize();
+client.initialize();
 export const generateQr = (req, res) => {
   let isSent = true;
   client.on("qr", (qr) => {
