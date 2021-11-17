@@ -12,10 +12,8 @@ export const generateQr = (req, res) => {
   let isSent = true;
   client.on("qr", (qr) => {
     if (isSent) {
-      client.removeListener("qr", (e) => {
-        console.log(e);
-      });
       res.status(200).json({ qrCode: qr });
+      client.removeAllListeners("qr");
       isSent = false;
     }
   });
