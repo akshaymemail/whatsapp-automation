@@ -2,8 +2,12 @@ import { nanoid } from "nanoid";
 import db from "../../database/db.js";
 import { Client } from "whatsapp-web.js";
 
-const client = new Client();
-client.initialize();
+const client = new Client({
+  puppeteer: {
+    args: ["--no-sandbox"]
+  }
+});
+client.client.initialize();
 export const generateQr = (req, res) => {
   let isSent = true;
   client.on("qr", (qr) => {
