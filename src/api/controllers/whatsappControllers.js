@@ -7,12 +7,15 @@ const client = new Client({
     args: ["--no-sandbox"]
   }
 });
-client.initialize();
 export const generateQr = (req, res) => {
+  client.initialize();
+  client = client;
   let isSent = true;
   client.on("qr", (qr) => {
     if (isSent) {
-      req.client = client;
+      client.removeListener("qr", (e) => {
+        console.log(e);
+      });
       res.status(200).json({ qrCode: qr });
       isSent = false;
     }
@@ -20,7 +23,7 @@ export const generateQr = (req, res) => {
 };
 
 export const isAuthenticated = (req, res) => {
-  client.on("authenticated", (session) => {
+  req.client.on("authenticated", (session) => {
     let isDone = true;
     if (isDone) {
       db.execute(
