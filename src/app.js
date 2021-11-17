@@ -21,7 +21,7 @@ app.use("/apiv1/client", whatsAppRouter);
 
 // HOME ROUTE
 app.get("/", (req, res) => {
-  res.status(200).send({ message: "Node Is Here!" });
+  res.status(200).send({ message: "Server is up and running!" });
 });
 
 // SPINNING THE SERVER
